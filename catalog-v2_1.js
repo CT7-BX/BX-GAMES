@@ -1,0 +1,341 @@
+/* BX-GAMES 2.1: expansão do catálogo PS4. Os IDs legados não mudam. */
+(function(root){
+'use strict';
+const data={
+  "version": "2.1",
+  "rows": [
+    [
+      "Cyberpunk 2077",
+      2020,
+      "RPG,Ação",
+      "medium",
+      "medium",
+      "solo",
+      "ficcao-cientifica,mundo-aberto,historia,novidade",
+      "🌆"
+    ],
+    [
+      "Hogwarts Legacy",
+      2023,
+      "RPG,Aventura",
+      "medium",
+      "medium",
+      "solo",
+      "fantasia,mundo-aberto,exploracao,novidade",
+      "🪄"
+    ],
+    [
+      "Persona 5 Royal",
+      2020,
+      "RPG,Aventura",
+      "long",
+      "medium",
+      "solo",
+      "anime,historia,turnos,novidade",
+      "🎭"
+    ],
+    [
+      "Persona 3 Reload",
+      2024,
+      "RPG,Aventura",
+      "long",
+      "medium",
+      "solo",
+      "anime,historia,turnos,novidade",
+      "🌙"
+    ],
+    [
+      "Yakuza 0",
+      2017,
+      "Ação,Aventura",
+      "medium",
+      "medium",
+      "solo",
+      "historia,mundo-aberto,combate,novidade",
+      "🐉"
+    ],
+    [
+      "Final Fantasy VII Remake",
+      2020,
+      "RPG,Ação",
+      "medium",
+      "medium",
+      "solo",
+      "fantasia,historia,combate,novidade",
+      "☄️"
+    ],
+    [
+      "Final Fantasy XV",
+      2016,
+      "RPG,Aventura",
+      "medium",
+      "medium",
+      "solo",
+      "fantasia,mundo-aberto,historia,novidade",
+      "🚗"
+    ],
+    [
+      "Monster Hunter: World",
+      2018,
+      "RPG,Ação",
+      "long",
+      "hard",
+      "both",
+      "fantasia,combate,cooperativo,novidade",
+      "🐉"
+    ],
+    [
+      "Monster Hunter Rise",
+      2023,
+      "RPG,Ação",
+      "medium",
+      "medium",
+      "both",
+      "fantasia,combate,cooperativo,novidade",
+      "🦖"
+    ],
+    [
+      "Diablo IV",
+      2023,
+      "RPG,Ação",
+      "medium",
+      "medium",
+      "both",
+      "fantasia,cooperativo,online-obrigatorio,novidade",
+      "🔥"
+    ],
+    [
+      "Batman: Arkham Knight",
+      2015,
+      "Ação,Aventura",
+      "medium",
+      "medium",
+      "solo",
+      "super-heroi,mundo-aberto,historia,novidade",
+      "🦇"
+    ],
+    [
+      "Control: Ultimate Edition",
+      2020,
+      "Ação,Aventura",
+      "short",
+      "medium",
+      "solo",
+      "ficcao-cientifica,historia,exploracao,novidade",
+      "🌀"
+    ],
+    [
+      "Sifu",
+      2022,
+      "Ação,Indie",
+      "short",
+      "hard",
+      "solo",
+      "combate,desafio,curto,novidade",
+      "🥋"
+    ],
+    [
+      "Stray",
+      2022,
+      "Indie,Aventura",
+      "short",
+      "easy",
+      "solo",
+      "exploracao,curto,historia,novidade",
+      "🐈"
+    ],
+    [
+      "Tunic",
+      2022,
+      "Ação,Aventura",
+      "short",
+      "hard",
+      "solo",
+      "fantasia,puzzle,exploracao,novidade",
+      "🦊"
+    ],
+    [
+      "Sea of Stars",
+      2023,
+      "RPG,Aventura",
+      "medium",
+      "medium",
+      "both",
+      "fantasia,turnos,cooperativo,novidade",
+      "🌊"
+    ],
+    [
+      "Dave the Diver",
+      2024,
+      "Indie,Aventura",
+      "medium",
+      "easy",
+      "solo",
+      "exploracao,relaxante,divertido,novidade",
+      "🤿"
+    ],
+    [
+      "Prince of Persia: The Lost Crown",
+      2024,
+      "Ação,Plataforma",
+      "medium",
+      "medium",
+      "solo",
+      "metroidvania,2d,exploracao,novidade",
+      "👑"
+    ],
+    [
+      "A Plague Tale: Innocence",
+      2019,
+      "Aventura,Ação",
+      "short",
+      "medium",
+      "solo",
+      "historia,sobrevivencia,curto,novidade",
+      "🐀"
+    ],
+    [
+      "Metal Gear Solid V: The Phantom Pain",
+      2015,
+      "Ação,Aventura",
+      "long",
+      "medium",
+      "solo",
+      "mundo-aberto,furtividade,historia,novidade",
+      "🕶️"
+    ],
+    [
+      "Chants of Sennaar",
+      2023,
+      "Indie,Puzzle",
+      "short",
+      "easy",
+      "solo",
+      "puzzle,exploracao,curto,novidade",
+      "🗼"
+    ],
+    [
+      "Slay the Spire",
+      2019,
+      "Indie,RPG",
+      "medium",
+      "medium",
+      "solo",
+      "cartas,roguelike,estrategia,novidade",
+      "🃏"
+    ],
+    [
+      "Return of the Obra Dinn",
+      2019,
+      "Indie,Puzzle",
+      "short",
+      "medium",
+      "solo",
+      "investigacao,puzzle,curto,novidade",
+      "🚢"
+    ],
+    [
+      "Naruto Shippuden: Ultimate Ninja Storm 4",
+      2016,
+      "Ação,Aventura",
+      "short",
+      "easy",
+      "both",
+      "anime,combate,curto,novidade",
+      "🍥"
+    ],
+    [
+      "Assassin’s Creed Mirage",
+      2023,
+      "Ação,Aventura",
+      "medium",
+      "medium",
+      "solo",
+      "historia,furtividade,mundo-aberto,novidade",
+      "🏛️"
+    ]
+  ],
+  "hours": {
+    "Cyberpunk 2077": 26,
+    "Hogwarts Legacy": 26,
+    "Persona 5 Royal": 101,
+    "Persona 3 Reload": 65,
+    "Yakuza 0": 31,
+    "Final Fantasy VII Remake": 33,
+    "Final Fantasy XV": 28,
+    "Monster Hunter: World": 48,
+    "Monster Hunter Rise": 21,
+    "Diablo IV": 28,
+    "Batman: Arkham Knight": 16,
+    "Control: Ultimate Edition": 12,
+    "Sifu": 10,
+    "Stray": 5,
+    "Tunic": 12,
+    "Sea of Stars": 28,
+    "Dave the Diver": 24,
+    "Prince of Persia: The Lost Crown": 18,
+    "A Plague Tale: Innocence": 11,
+    "Metal Gear Solid V: The Phantom Pain": 45,
+    "Chants of Sennaar": 9,
+    "Slay the Spire": 15,
+    "Return of the Obra Dinn": 8,
+    "Naruto Shippuden: Ultimate Ninja Storm 4": 8,
+    "Assassin’s Creed Mirage": 15
+  },
+  "steam": {
+    "Cyberpunk 2077": 1091500,
+    "Hogwarts Legacy": 990080,
+    "Persona 5 Royal": 1687950,
+    "Persona 3 Reload": 2161700,
+    "Yakuza 0": 638970,
+    "Final Fantasy XV": 637650,
+    "Monster Hunter: World": 582010,
+    "Monster Hunter Rise": 1446780,
+    "Diablo IV": 2344520,
+    "Batman: Arkham Knight": 208650,
+    "Control: Ultimate Edition": 870780,
+    "Sifu": 2138710,
+    "Stray": 1332010,
+    "Tunic": 553420,
+    "Sea of Stars": 1244090,
+    "Dave the Diver": 1868140,
+    "Prince of Persia: The Lost Crown": 2751000,
+    "A Plague Tale: Innocence": 752590,
+    "Metal Gear Solid V: The Phantom Pain": 287700,
+    "Chants of Sennaar": 1931770,
+    "Slay the Spire": 646570,
+    "Return of the Obra Dinn": 653530,
+    "Naruto Shippuden: Ultimate Ninja Storm 4": 349040,
+    "Assassin’s Creed Mirage": 3035570
+  },
+  "wiki": {
+    "Cyberpunk 2077": "Cyberpunk 2077",
+    "Hogwarts Legacy": "Hogwarts Legacy",
+    "Persona 5 Royal": "Persona 5 Royal",
+    "Persona 3 Reload": "Persona 3 Reload",
+    "Yakuza 0": "Yakuza 0",
+    "Final Fantasy VII Remake": "Final Fantasy VII Remake",
+    "Final Fantasy XV": "Final Fantasy XV",
+    "Monster Hunter: World": "Monster Hunter: World",
+    "Monster Hunter Rise": "Monster Hunter Rise",
+    "Diablo IV": "Diablo IV",
+    "Batman: Arkham Knight": "Batman: Arkham Knight",
+    "Control: Ultimate Edition": "Control: Ultimate Edition",
+    "Sifu": "Sifu",
+    "Stray": "Stray",
+    "Tunic": "Tunic",
+    "Sea of Stars": "Sea of Stars",
+    "Dave the Diver": "Dave the Diver",
+    "Prince of Persia: The Lost Crown": "Prince of Persia: The Lost Crown",
+    "A Plague Tale: Innocence": "A Plague Tale: Innocence",
+    "Metal Gear Solid V: The Phantom Pain": "Metal Gear Solid V: The Phantom Pain",
+    "Chants of Sennaar": "Chants of Sennaar",
+    "Slay the Spire": "Slay the Spire",
+    "Return of the Obra Dinn": "Return of the Obra Dinn",
+    "Naruto Shippuden: Ultimate Ninja Storm 4": "Naruto Shippuden: Ultimate Ninja Storm 4",
+    "Assassin’s Creed Mirage": "Assassin's Creed Mirage"
+  }
+};
+if(root) root.BX2Expansion=Object.freeze(data);
+if(typeof module!=='undefined'&&module.exports)module.exports=data;
+})(typeof window!=='undefined'?window:globalThis);
