@@ -2,7 +2,18 @@
 
 Site independente de descoberta e recomendações de jogos para **PlayStation 4**, com identidade preto/vermelho, interface em português e navegação responsiva.
 
-## Recursos da versão 1.2
+## BX-GAMES 2.0 — Etapa 1 (novidades)
+
+- **Quiz personalizado:** recomenda jogos cruzando gênero, duração, dificuldade, modo e histórico de zerados.
+- **Comparador:** dois jogos lado a lado (campanha, ano, gênero, dificuldade e modo).
+- **Biblioteca estendida:** Jogando / Pausado / Abandonado, notas individuais privadas e exportação de backup em JSON.
+- **Detalhes expandidos:** atalhos para pesquisar trailers e imagens, e espaços reservados para durações de extras e 100% ainda não verificadas.
+- **Proteção contra regressões:** o GitHub Pages só publica após testes de sintaxe, lógica e fluxos de UI simulados.
+- **Plano das oito melhorias:** [ROADMAP-2.0](docs/ROADMAP-2.0.md).
+
+As avaliações são **privadas**, não há comentários públicos nem catálogo automático nesta etapa. A recomendação continua sendo um algoritmo local e explicável, não IA generativa. Essas integrações exigirão backend e testes próprios.
+
+## Recursos preservados da versão 1.2
 
 - Catálogo inicial de **101 jogos de PS4**, com pesquisa, filtros e ordenação.
 - Capas reais via fontes públicas de terceiros, com imagem alternativa caso não carreguem.
@@ -42,7 +53,10 @@ Endereço público, após implantação bem-sucedida: https://ct7-bx.github.io/B
 - `styles.css` — tema preto/vermelho e estilos responsivos.
 - `site.js` — catálogo, capas e recomendações (bundle).
 - `favicon.svg` e `manifest.webmanifest` — identidade visual.
-- `.github/workflows/pages.yml` — publicação automática no GitHub Pages.
+- `.github/workflows/pages.yml` — validações e publicação automática no GitHub Pages.
+- `bx2-engine.js` — lógica testável do quiz, comparação e validação de perfil.
+- `bx2.js`, `bx2.css` — interface da etapa 1 da v2.0.
+- `tests/` — testes unitários e simulações de interação.
 
 Abra `index.html` localmente ou via servidor HTTP. Não exige API ou chave.
 
