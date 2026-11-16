@@ -1,5 +1,5 @@
 // Catálogo inicial, curado para jogos lançados no PS4.
-// Duração (short/medium/long) é uma faixa orientativa editorial, não uma medição oficial.
+// As faixas legadas nas linhas abaixo são recalculadas a partir das horas individuais.
 const GAME_ROWS = [
 // Nome | ano | categorias | duração | dificuldade | modos | características | selo
 ['Elden Ring',2022,'RPG,Ação','long','hard','solo','soulslike,mundo-aberto,fantasia,exploracao','🔥'],
@@ -104,13 +104,124 @@ const GAME_ROWS = [
 ['Dead Cells',2018,'Ação,Indie','medium','hard','solo','roguelike,metroidvania,2d','🧬'],
 ['Enter the Gungeon',2016,'Ação,Indie','medium','hard','both','roguelike,2d,arcade','🔫'],
 ];
+// Estimativas editoriais da HISTÓRIA PRINCIPAL, em horas. Não representam 100% nem DLC.
+// Valores arredondados com base em fontes comunitárias (HowLongToBeat, IsThereAnyDeal)
+// e guias de duração. null = sem campanha/objetivo final com tempo fixo.
+// Revisado em 16/11/2026. Fontes e limitações no README.
+const PLAYTIME_HOURS = Object.freeze({
+  "Elden Ring": 60,
+  "Bloodborne": 28,
+  "Sekiro: Shadows Die Twice": 30,
+  "Dark Souls III": 31,
+  "Dark Souls Remastered": 30,
+  "Dark Souls II: Scholar of the First Sin": 43,
+  "Lies of P": 30,
+  "Nioh": 35,
+  "Nioh 2": 45,
+  "Mortal Shell": 10,
+  "The Surge 2": 21,
+  "Code Vein": 26,
+  "Salt and Sanctuary": 16,
+  "Blasphemous": 14,
+  "Hollow Knight": 27,
+  "Wo Long: Fallen Dynasty": 24,
+  "Star Wars Jedi: Fallen Order": 17,
+  "Star Wars Jedi: Survivor": 21,
+  "Remnant: From the Ashes": 15,
+  "God of War": 21,
+  "God of War Ragnarök": 27,
+  "Ghost of Tsushima": 25,
+  "The Last of Us Remastered": 15,
+  "The Last of Us Part II": 24,
+  "Uncharted 4: A Thief’s End": 15,
+  "Uncharted: The Lost Legacy": 7,
+  "Marvel’s Spider-Man": 17,
+  "Marvel’s Spider-Man: Miles Morales": 8,
+  "Horizon Zero Dawn": 23,
+  "Horizon Forbidden West": 29,
+  "Days Gone": 37,
+  "Death Stranding": 40,
+  "inFAMOUS Second Son": 10,
+  "Shadow of the Colossus": 7,
+  "The Order: 1886": 7,
+  "Gravity Rush 2": 21,
+  "Detroit: Become Human": 12,
+  "Until Dawn": 8,
+  "Heavy Rain": 10,
+  "Beyond: Two Souls": 10,
+  "Kena: Bridge of Spirits": 10,
+  "Journey": 2,
+  "ABZÛ": 2,
+  "RiME": 5,
+  "Firewatch": 4,
+  "What Remains of Edith Finch": 2,
+  "Inside": 3.5,
+  "Limbo": 3.5,
+  "Little Nightmares": 4,
+  "Little Nightmares II": 5.5,
+  "Red Dead Redemption 2": 51,
+  "Grand Theft Auto V": 32,
+  "The Witcher 3: Wild Hunt": 52,
+  "The Elder Scrolls V: Skyrim Special Edition": 34,
+  "Fallout 4": 27,
+  "Assassin’s Creed Origins": 30,
+  "Assassin’s Creed Odyssey": 45,
+  "Assassin’s Creed Valhalla": 61,
+  "Kingdom Come: Deliverance": 40,
+  "Middle-earth: Shadow of War": 22,
+  "Mad Max": 20,
+  "Resident Evil 2": 9,
+  "Resident Evil 4": 16,
+  "Resident Evil 7: Biohazard": 9,
+  "Resident Evil Village": 10,
+  "Alien: Isolation": 18,
+  "SOMA": 9,
+  "The Evil Within 2": 14,
+  "DOOM": 12,
+  "DOOM Eternal": 14,
+  "Titanfall 2": 6,
+  "Metro Exodus": 15,
+  "Wolfenstein: The New Order": 11,
+  "Minecraft": null,
+  "Terraria": 52,
+  "Stardew Valley": null,
+  "Subnautica": 29,
+  "Subnautica: Below Zero": 20,
+  "No Man’s Sky": 30,
+  "Astroneer": 22,
+  "The Forest": 15,
+  "Slime Rancher": 14,
+  "Outer Wilds": 17,
+  "F1 24": null,
+  "Gran Turismo 7": 26,
+  "DiRT Rally 2.0": null,
+  "Wreckfest": 17,
+  "Need for Speed Heat": 12,
+  "Burnout Paradise Remastered": 14,
+  "It Takes Two": 12,
+  "A Way Out": 6,
+  "Overcooked! 2": 7,
+  "Rayman Legends": 17,
+  "Sackboy: A Big Adventure": 10,
+  "Cuphead": 10,
+  "Crash Bandicoot N. Sane Trilogy": 16,
+  "Spyro Reignited Trilogy": 14,
+  "Celeste": 8,
+  "Hades": 22,
+  "Dead Cells": 15,
+  "Enter the Gungeon": 20,
+});
 const PALETTES = [ ['#3b171e','#bc303b'],['#171b3e','#6865bf'],['#1d3c40','#2c9e9f'],['#3b251d','#d48c3e'],['#231b35','#8b56bf'],['#29382c','#7ba057'],['#3a1c2f','#d65c89'] ];
 const games = GAME_ROWS.map((row,index)=>{
- const [title,year,genres,duration,difficulty,mode,tags,emoji] = row;
+ const [title,year,genres,_oldDuration,difficulty,mode,tags,emoji] = row;
  const [start,end] = PALETTES[index%PALETTES.length];
- return {id:'g'+index,title,year,genres:genres.split(','),duration,difficulty,mode,tags:tags.split(','),emoji,start,end};
+ const mainHours = Object.prototype.hasOwnProperty.call(PLAYTIME_HOURS,title) ? PLAYTIME_HOURS[title] : null;
+ const duration = mainHours == null ? 'open' : mainHours <= 12 ? 'short' : mainHours <= 35 ? 'medium' : 'long';
+ return {id:'g'+index,title,year,genres:genres.split(','),duration,mainHours,difficulty,mode,tags:tags.split(','),emoji,start,end};
 });
-const DURATION_LABEL = {short:'Até ~12h',medium:'~12–35h',long:'35h+'};
+// O valor exibido e o filtro partem da MESMA duração individual.
+function playtimeLabel(g){return g.mainHours == null ? 'Duração livre' : '≈ ' + String(g.mainHours).replace('.',',') + 'h';}
+const DURATION_LABEL = {short:'Até 12h',medium:'13–35h',long:'Mais de 35h',open:'Duração livre'};
 const DIFFICULTY_LABEL = {easy:'Acessível',medium:'Moderada',hard:'Desafiadora'};
 const MODE_LABEL = {solo:'Um jogador',both:'Solo + multi',coop:'Cooperativo'};
 
@@ -295,7 +406,9 @@ function baseFiltered(){let items=games.filter(g=>{
  if(state.query&&!normalize([g.title,...g.genres,...g.tags].join(' ')).includes(normalize(state.query)))return false;
  return true;
  });
- if(state.sort==='az')items.sort((a,b)=>a.title.localeCompare(b.title,'pt-BR'));
+ if(state.sort==='shortest')items.sort((a,b)=>(a.mainHours==null?Infinity:a.mainHours)-(b.mainHours==null?Infinity:b.mainHours)||a.title.localeCompare(b.title,'pt-BR'));
+ else if(state.sort==='longest')items.sort((a,b)=>(b.mainHours==null?-Infinity:b.mainHours)-(a.mainHours==null?-Infinity:a.mainHours)||a.title.localeCompare(b.title,'pt-BR'));
+ else if(state.sort==='az')items.sort((a,b)=>a.title.localeCompare(b.title,'pt-BR'));
  else if(state.sort==='new')items.sort((a,b)=>b.year-a.year||a.title.localeCompare(b.title));
  else if(state.sort==='old')items.sort((a,b)=>a.year-b.year||a.title.localeCompare(b.title));
  return items;}
@@ -328,14 +441,14 @@ function hydrateCovers(scope=document){
  });
 }
 function cardHTML(g){const fav=library.favorites.includes(g.id),later=library.later.includes(g.id),played=library.played.includes(g.id);
-return `<article class="game-card"><div class="cover" style="--start:${g.start};--end:${g.end}">${coverImg(g)}<span class="cover-symbol" aria-hidden="true">${g.emoji}</span><span class="cover-top">PS4 · ${g.year}</span><button class="cover-heart ${fav?'selected':''}" data-action="favorites" data-id="${g.id}" aria-label="${fav?'Remover dos':'Adicionar aos'} favoritos" title="Favoritar">${fav?'♥':'♡'}</button><button class="game-title-button cover-title" style="position:relative;color:white;min-height:0;text-align:center" data-action="details" data-id="${g.id}">${escapeHTML(g.title)}</button></div><div class="game-content"><button class="game-title-button" data-action="details" data-id="${g.id}">${escapeHTML(g.title)}</button><div class="game-tags">${escapeHTML(g.genres.join(' · '))}</div><div class="game-footer"><span><b>◷</b> ${DURATION_LABEL[g.duration]}</span><div class="mini-actions"><button class="${later?'active':''}" data-action="later" data-id="${g.id}" title="${later?'Remover de quero jogar':'Quero jogar'}" aria-label="Quero jogar ${escapeHTML(g.title)}">▤</button><button class="${played?'active':''}" data-action="played" data-id="${g.id}" title="${played?'Desmarcar zerado':'Marcar zerado'}" aria-label="Marcar ${escapeHTML(g.title)} como zerado">✓</button></div></div></div></article>`;}
+return `<article class="game-card"><div class="cover" style="--start:${g.start};--end:${g.end}">${coverImg(g)}<span class="cover-symbol" aria-hidden="true">${g.emoji}</span><span class="cover-top">PS4 · ${g.year}</span><button class="cover-heart ${fav?'selected':''}" data-action="favorites" data-id="${g.id}" aria-label="${fav?'Remover dos':'Adicionar aos'} favoritos" title="Favoritar">${fav?'♥':'♡'}</button><button class="game-title-button cover-title" style="position:relative;color:white;min-height:0;text-align:center" data-action="details" data-id="${g.id}">${escapeHTML(g.title)}</button></div><div class="game-content"><button class="game-title-button" data-action="details" data-id="${g.id}">${escapeHTML(g.title)}</button><div class="game-tags">${escapeHTML(g.genres.join(' · '))}</div><div class="game-footer"><span><b>◷</b> ${playtimeLabel(g)}</span><div class="mini-actions"><button class="${later?'active':''}" data-action="later" data-id="${g.id}" title="${later?'Remover de quero jogar':'Quero jogar'}" aria-label="Quero jogar ${escapeHTML(g.title)}">▤</button><button class="${played?'active':''}" data-action="played" data-id="${g.id}" title="${played?'Desmarcar zerado':'Marcar zerado'}" aria-label="Marcar ${escapeHTML(g.title)} como zerado">✓</button></div></div></div></article>`;}
 function renderCatalog(){const filtered=baseFiltered();$('resultsCount').textContent=`${filtered.length} ${filtered.length===1?'jogo':'jogos'}`;const visible=filtered.slice(0,state.visible);$('gamesGrid').innerHTML=visible.length?visible.map(cardHTML).join(''):`<div class="empty-state"><strong>Sem jogos por aqui</strong><p>${['favorites','later','played'].includes(state.view)?'Marque jogos na biblioteca para vê-los aqui.':'Tente combinar outros filtros ou limpar a busca.'}</p></div>`;$('loadMore').hidden=filtered.length<=state.visible;hydrateCovers($('gamesGrid'));}
-function renderFeatured(){const picks=[games[0],games[24],games[50]];$('featuredGrid').innerHTML=picks.map((g,index)=>`<button type="button" class="featured-card" style="--start:${g.start};--end:${g.end}" data-action="details" data-id="${g.id}" data-emoji="${g.emoji}">${coverImg(g)}<span class="featured-badge">${['⚔ PARA OS CORAJOSOS','⚡ CAMPANHA CURTA','◇ MUNDO ABERTO'][index]}</span><h3>${escapeHTML(g.title)}</h3><small>${escapeHTML(g.genres.join(' · '))} · ${DURATION_LABEL[g.duration]}</small></button>`).join('');hydrateCovers($('featuredGrid'));}
+function renderFeatured(){const picks=[games[0],games[24],games[50]];$('featuredGrid').innerHTML=picks.map((g,index)=>`<button type="button" class="featured-card" style="--start:${g.start};--end:${g.end}" data-action="details" data-id="${g.id}" data-emoji="${g.emoji}">${coverImg(g)}<span class="featured-badge">${['⚔ PARA OS CORAJOSOS','⚡ CAMPANHA CURTA','◇ MUNDO ABERTO'][index]}</span><h3>${escapeHTML(g.title)}</h3><small>${escapeHTML(g.genres.join(' · '))} · ${playtimeLabel(g)}</small></button>`).join('');hydrateCovers($('featuredGrid'));}
 const viewTitles={discover:['Descobrir','Catálogo PS4','Encontre o jogo certo para o seu momento.'],recommend:['Para você','Jogos para você','Sugestões baseadas em seus favoritos e histórico.'],quick:['Zerar rápido','Jogos para zerar rápido','Campanhas curtas para aproveitar sem enrolação.'],favorites:['Favoritos','Meus favoritos','Seus jogos preferidos em um só lugar.'],later:['Quero jogar','Quero jogar','Sua lista para a próxima jogatina.'],played:['Já zerei','Jogos zerados','Acompanhe suas conquistas pessoais.']};
 function setView(view){state.view=view;state.visible=16;document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===view));const [crumb,title,subtitle]=viewTitles[view];$('breadcrumb').textContent=crumb;$('catalogTitle').innerHTML=`${title} <span class="red-line">—</span>`;$('catalogCaption').textContent=subtitle;const featuredVisible=view==='discover';$('pickSection').hidden=!featuredVisible;$('featuredGrid').hidden=!featuredVisible;if(view==='recommend'){renderRecommendations('Quero recomendações de acordo com meus favoritos e jogos zerados',true);}renderCatalog();$('catalogAnchor').scrollIntoView({behavior:'smooth',block:'start'});}
 function clearFilters(){state.query='';state.genre='all';state.duration='all';state.difficulty='all';state.mode='all';state.tag='all';state.sort='featured';state.visible=16;$('search').value='';for(const id of ['genreFilter','durationFilter','difficultyFilter','modeFilter'])$(id).value='all';$('sort').value='featured';document.querySelectorAll('.chip').forEach(b=>b.classList.toggle('active',b.dataset.tag==='all'));renderCatalog();}
 function showDialog(id,refresh=false){const g=games.find(game=>game.id===id);if(!g)return;
- $('dialogBody').innerHTML=`<div class="dialog-art" style="--start:${g.start};--end:${g.end}">${coverImg(g)}<span class="dialog-symbol">${g.emoji}</span></div><div class="dialog-info"><span class="kicker">PS4 · LANÇAMENTO ${g.year}</span><h2>${escapeHTML(g.title)}</h2><div class="dialog-meta"><span>${escapeHTML(g.genres.join(' · '))}</span><span>◷ ${DURATION_LABEL[g.duration]}</span><span>◆ ${DIFFICULTY_LABEL[g.difficulty]}</span><span>◈ ${MODE_LABEL[g.mode]}</span></div><p>Para quem gosta de ${escapeHTML(g.tags.slice(0,3).map(t=>t.replace(/-/g,' ')).join(', '))}. A duração é uma estimativa editorial da campanha/experiência e pode variar bastante conforme seu estilo de jogo.</p><div class="dialog-buttons"><button data-action="favorites" data-id="${g.id}" class="${library.favorites.includes(g.id)?'active':''}">♡ ${library.favorites.includes(g.id)?'Favorito ✓':'Favoritar'}</button><button data-action="later" data-id="${g.id}" class="${library.later.includes(g.id)?'active':''}">▤ ${library.later.includes(g.id)?'Na lista ✓':'Quero jogar'}</button><button data-action="played" data-id="${g.id}" class="${library.played.includes(g.id)?'active':''}">✓ ${library.played.includes(g.id)?'Já zerei ✓':'Marcar zerado'}</button><button data-action="similar" data-id="${g.id}">✧ Ver parecidos</button></div></div>`;
+ $('dialogBody').innerHTML=`<div class="dialog-art" style="--start:${g.start};--end:${g.end}">${coverImg(g)}<span class="dialog-symbol">${g.emoji}</span></div><div class="dialog-info"><span class="kicker">PS4 · LANÇAMENTO ${g.year}</span><h2>${escapeHTML(g.title)}</h2><div class="dialog-meta"><span>${escapeHTML(g.genres.join(' · '))}</span><span>◷ ${playtimeLabel(g)}</span><span>◆ ${DIFFICULTY_LABEL[g.difficulty]}</span><span>◈ ${MODE_LABEL[g.mode]}</span></div><p>Para quem gosta de ${escapeHTML(g.tags.slice(0,3).map(t=>t.replace(/-/g,' ')).join(', '))}. A duração é uma estimativa editorial da campanha/experiência e pode variar bastante conforme seu estilo de jogo.</p><div class="dialog-buttons"><button data-action="favorites" data-id="${g.id}" class="${library.favorites.includes(g.id)?'active':''}">♡ ${library.favorites.includes(g.id)?'Favorito ✓':'Favoritar'}</button><button data-action="later" data-id="${g.id}" class="${library.later.includes(g.id)?'active':''}">▤ ${library.later.includes(g.id)?'Na lista ✓':'Quero jogar'}</button><button data-action="played" data-id="${g.id}" class="${library.played.includes(g.id)?'active':''}">✓ ${library.played.includes(g.id)?'Já zerei ✓':'Marcar zerado'}</button><button data-action="similar" data-id="${g.id}">✧ Ver parecidos</button></div></div>`;
  hydrateCovers($('dialogBody'));
  if(!refresh&&!$('gameDialog').open){const d=$('gameDialog');if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','');}}
 // Explicável e determinístico: analisa termos em português, perfil e similaridade.
