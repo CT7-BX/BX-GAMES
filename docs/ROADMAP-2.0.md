@@ -19,6 +19,13 @@ Atualizado em 16/11/2026. O BX-GAMES continua sendo um site estático no GitHub 
 - Validações adicionais no GitHub Actions para a integridade dos dados de expansão.
 - As etapas de dados completos por jogo, notas públicas e catálogo automático seguem planejadas.
 
+## Incremento v2.2 — avaliações pessoais (implementado)
+
+- Notas de 1–5 estrelas, resenhas locais, flag de spoiler, ranking privado e exportação de backup.
+- Compatibilidade mantida com notas e favoritos das versões anteriores; sem dados comunitários falsos.
+- Testes automáticos de notas, resenhas e UI simulada como barreira de publicação.
+- Notas/comentários **públicos e sincronizados** ainda dependem de servidor autenticado, moderação e política de privacidade.
+
 ## Etapa 2 — conteúdo de cada jogo e duração verificada (planejada)
 
 1. Página própria por jogo com descrição autoral curta, screenshots, desenvolvedor, editor, plataformas e link de trailer **validado**.
