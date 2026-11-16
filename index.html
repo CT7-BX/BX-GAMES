@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0a0a0d"><meta name="description" content="BX-GAMES: descubra jogos de PS4 com recomendações inteligentes, filtros e sua própria biblioteca.">
-  <title>BX-GAMES — Descubra seu próximo jogo</title><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css">
+  <title>BX-GAMES — Descubra seu próximo jogo</title><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./bx2.css?v=2.0a">
 </head>
 <body>
 <div class="shell">
@@ -11,13 +11,48 @@
  <a href="#inicio" class="brand" aria-label="BX-GAMES início"><span class="brand-mark">BX<span>✦</span></span><span class="brand-text">BX<span>-</span>GAMES<small>PLAYSTATION DISCOVERY</small></span></a>
  <div class="side-section"><span class="side-caption">DESCUBRA</span><button class="nav-btn active" data-view="discover"><span>◈</span> Explorar jogos</button><button class="nav-btn" data-view="recommend"><span>✧</span> Para você</button><button class="nav-btn" data-view="quick"><span>⚡</span> Zerar rápido</button></div>
  <div class="side-section"><span class="side-caption">MINHA ÁREA</span><button class="nav-btn" data-view="favorites"><span>♡</span> Favoritos <b id="favoritesCount">0</b></button><button class="nav-btn" data-view="later"><span>▤</span> Quero jogar <b id="laterCount">0</b></button><button class="nav-btn" data-view="played"><span>✓</span> Já zerei <b id="playedCount">0</b></button></div>
- <div class="sidebar-bottom"><span class="status-dot"></span><div><strong>BX-GAMES <span class="tiny-version">v1.2</span></strong><small>Seu próximo jogo começa aqui.</small></div></div>
+ <div class="side-section"><span class="side-caption">FERRAMENTAS 2.0</span><button class="bx2-sidebar-link" data-bx2-jump="Quiz">✧ Quiz de jogos</button><button class="bx2-sidebar-link" data-bx2-jump="Compare">⚖ Comparador</button><button class="bx2-sidebar-link" data-bx2-jump="Library">▤ Minha biblioteca 2.0</button></div>
+ <div class="sidebar-bottom"><span class="status-dot"></span><div><strong>BX-GAMES <span class="tiny-version">v2.0 · etapa 1</span></strong><small>Seu próximo jogo começa aqui.</small></div></div>
 </aside>
 <main class="main" id="inicio">
  <header class="topbar"><div class="breadcrumbs">BX-GAMES <span>/</span> <strong id="breadcrumb">Descobrir</strong></div><div class="top-controls"><span class="platform-pill">◉ PS4</span><button class="icon-button" id="surpriseTop" type="button" title="Jogo surpresa" aria-label="Sortear jogo">⚄</button></div></header>
  <section class="hero" aria-labelledby="heroTitle"><div class="hero-glow" aria-hidden="true"></div><div class="hero-body"><span class="eyebrow"><i></i> SUA PRÓXIMA AVENTURA COMEÇA AQUI</span><h1 id="heroTitle">Não sabe o que <br><em>jogar agora?</em></h1><p>Encontre jogos que realmente combinam com você. Explore o catálogo, descubra semelhantes aos seus favoritos e receba sugestões personalizadas.</p><div class="hero-actions"><button class="primary-button" id="recommendHero">✧ Descobrir meu próximo jogo <span>↗</span></button><button class="ghost-button" id="randomHero">⚄ Me surpreenda</button></div><div class="hero-meta"><span>◌ Catálogo inicial de <strong id="heroCount">0</strong> jogos</span><span>◌ Feito para PS4</span></div></div><div class="hero-art" aria-hidden="true"><span class="hero-ring ring-one"></span><span class="hero-ring ring-two"></span><span class="hero-controller">✦</span><span class="hero-mini mini-a">△</span><span class="hero-mini mini-b">○</span><span class="hero-mini mini-c">×</span><span class="hero-mini mini-d">□</span></div></section>
  <section class="section-row" id="pickSection"><div><span class="kicker">SELEÇÃO BX</span><h2>Escolhas para começar <span class="red-line">—</span></h2></div><button class="plain-link" id="scrollCatalog">Ver catálogo <span>↗</span></button></section>
  <div class="featured-grid" id="featuredGrid"></div>
+ <section class="bx2-tools" id="bx2Tools" aria-labelledby="bx2Title">
+ <div class="bx2-titlebar"><div><span class="kicker">NOVAS FERRAMENTAS</span><h2 id="bx2Title">Seu próximo jogo, sua escolha <span class="red-line">—</span></h2><p>Responda ao quiz, compare dois títulos e organize sua biblioteca. Tudo funciona neste navegador, sem login.</p></div><span class="bx2-step">BX-GAMES 2.0 · Etapa 1</span></div>
+ <div class="bx2-grid">
+  <section class="bx2-card" id="bx2Quiz" aria-labelledby="bx2QuizTitle">
+   <h3 id="bx2QuizTitle">✧ Quiz de recomendações</h3>
+   <p class="bx2-muted">Quatro escolhas rápidas. O resultado considera os filtros e evita indicar jogos já marcados como zerados.</p>
+   <form id="bx2QuizForm">
+    <div class="bx2-fields">
+     <label>Gênero<select id="bx2Genre"><option value="all">Qualquer gênero</option><option value="RPG">RPG</option><option value="Ação">Ação</option><option value="Aventura">Aventura</option><option value="Terror">Terror</option><option value="Corrida">Corrida</option><option value="Indie">Indie</option></select></label>
+     <label>Tempo de campanha<select id="bx2Time"><option value="all">Qualquer duração</option><option value="short">Até 12 horas</option><option value="medium">13–35 horas</option><option value="long">Mais de 35 horas</option><option value="open">Duração livre</option></select></label>
+     <label>Dificuldade<select id="bx2Difficulty"><option value="all">Qualquer dificuldade</option><option value="easy">Acessível</option><option value="medium">Moderada</option><option value="hard">Desafiadora</option></select></label>
+     <label>Como deseja jogar?<select id="bx2Mode"><option value="all">Qualquer modo</option><option value="solo">Sozinho</option><option value="coop">Com outra pessoa</option></select></label>
+    </div>
+    <button class="bx2-action" type="submit">Encontrar meus jogos ↗</button>
+   </form>
+   <div id="bx2QuizResult" aria-live="polite"><p class="bx2-muted">Suas recomendações aparecerão aqui.</p></div>
+  </section>
+  <section class="bx2-card" id="bx2Compare" aria-labelledby="bx2CompareTitle">
+   <h3 id="bx2CompareTitle">⚖ Comparador de jogos</h3>
+   <p class="bx2-muted">Compare duração, ano, dificuldade, gênero e modo de jogo antes de decidir o que jogar.</p>
+   <div class="bx2-compare-selects">
+    <label>Jogo A<select id="bx2CompareA" aria-label="Primeiro jogo a comparar"></select></label>
+    <label>Jogo B<select id="bx2CompareB" aria-label="Segundo jogo a comparar"></select></label>
+   </div>
+   <div id="bx2CompareResult" aria-live="polite"></div>
+  </section>
+  <section class="bx2-card bx2-personal" id="bx2Library" aria-labelledby="bx2LibraryTitle">
+   <div class="bx2-personal-head"><div><h3 id="bx2LibraryTitle">▤ Biblioteca pessoal avançada</h3><p class="bx2-muted" id="bx2LibraryCounts">Jogando 0 · Pausados 0 · Abandonados 0</p></div><button class="bx2-action" type="button" id="bx2Export">↓ Exportar backup JSON</button></div>
+   <p class="bx2-muted">Para alterar o status ou dar sua nota particular, abra os detalhes de qualquer jogo. Favoritos e jogos zerados continuam funcionando normalmente.</p>
+   <div id="bx2LibraryList"></div>
+  </section>
+ </div>
+</section>
+
  <section class="section-row catalog-heading" id="catalogAnchor"><div><span class="kicker">EXPLORE SEM LIMITES</span><h2 id="catalogTitle">Catálogo PS4 <span class="red-line">—</span></h2><p id="catalogCaption" class="section-note">Encontre o jogo certo para o seu momento.</p></div><button id="resetFilters" class="reset-link">↻ Limpar filtros</button></section>
  <div class="filter-panel"><div class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" placeholder="Buscar jogo, gênero ou característica..." aria-label="Buscar jogos" type="search" autocomplete="off"></div><div class="filters"><label>Gênero<select id="genreFilter"><option value="all">Todos os gêneros</option></select></label><label>Duração<select id="durationFilter"><option value="all">Qualquer duração</option><option value="short">Até ~12h</option><option value="medium">~12–35h</option><option value="long">Mais de 35h</option><option value="open">Duração livre</option></select></label><label>Dificuldade<select id="difficultyFilter"><option value="all">Qualquer nível</option><option value="easy">Acessível</option><option value="medium">Moderada</option><option value="hard">Desafiadora</option></select></label><label>Modo<select id="modeFilter"><option value="all">Todos os modos</option><option value="solo">Um jogador</option><option value="multi">Com multiplayer</option><option value="coop">Cooperativo</option></select></label></div><div class="filter-bottom"><div class="chips" id="chips"><button class="chip active" data-tag="all">Todos</button><button class="chip" data-tag="soulslike">⚔ Soulslike</button><button class="chip" data-tag="mundo-aberto">◈ Mundo aberto</button><button class="chip" data-tag="historia">◇ Boa história</button><button class="chip" data-tag="curto">⚡ Curtos</button><button class="chip" data-tag="cooperativo">♧ Coop</button><button class="chip" data-tag="relaxante">☁ Relaxantes</button></div><div class="sort-wrap"><span id="resultsCount">0 jogos</span><label class="sr-only" for="sort">Ordenar jogos</label><select id="sort"><option value="featured">Em destaque</option><option value="az">Nome A–Z</option><option value="new">Mais recentes</option><option value="old">Mais antigos</option><option value="shortest">Campanhas mais curtas</option><option value="longest">Campanhas mais longas</option></select></div></div></div>
  <div class="games-grid" id="gamesGrid" aria-live="polite"></div><div class="load-more-wrap"><button class="load-more" id="loadMore">Mostrar mais jogos ↓</button></div>
@@ -28,4 +63,6 @@
 <dialog id="gameDialog" class="game-dialog"><button class="dialog-close" id="closeDialog" aria-label="Fechar">×</button><div id="dialogBody"></div></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script defer src="./site.js?v=1.2"></script>
+<script defer src="./bx2-engine.js?v=2.0a"></script>
+<script defer src="./bx2.js?v=2.0a"></script>
 </body></html>
