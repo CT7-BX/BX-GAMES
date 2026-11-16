@@ -12,6 +12,13 @@ Atualizado em 16/11/2026. O BX-GAMES continua sendo um site estático no GitHub 
 
 **Testes de etapa 1:** `node --check` nos três arquivos JS e `node --test tests/bx2.test.cjs` no fluxo de deploy. Validam o motor de recomendação, dados do comparador, recuperação segura das preferências e invariantes do catálogo. Isso **não** é um teste ponta a ponta em navegadores reais.
 
+## Incremento v2.1 — 25 jogos e Novidades (implementado)
+
+- Expansão do catálogo de 101 para 126 jogos de PS4, preservando os identificadores de favoritos/zerados.
+- Nova seção Novidades com 25 títulos, tempo individual e capas com fallback.
+- Validações adicionais no GitHub Actions para a integridade dos dados de expansão.
+- As etapas de dados completos por jogo, notas públicas e catálogo automático seguem planejadas.
+
 ## Etapa 2 — conteúdo de cada jogo e duração verificada (planejada)
 
 1. Página própria por jogo com descrição autoral curta, screenshots, desenvolvedor, editor, plataformas e link de trailer **validado**.
@@ -48,7 +55,7 @@ Atualizado em 16/11/2026. O BX-GAMES continua sendo um site estático no GitHub 
 | 5. Comparar dois jogos | **Implementado** |
 | 6. Quiz de recomendações | **Implementado** |
 | 7. Avaliações da comunidade | Pendente; apenas nota privada local |
-| 8. Catálogo automático | Pendente; curadoria atual de 101 jogos |
+| 8. Catálogo automático | Pendente; curadoria atual de 126 jogos |
 
 ## Implantação e reversão
 
