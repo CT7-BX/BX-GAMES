@@ -28,6 +28,7 @@ jobs:
           node --check catalog-v2_1.js
           node --check site.js
           node --check bx2-engine.js
+          node --check bx-reviews-engine.js
           node --check bx2.js
           node --test tests/*.test.cjs
       - name: Configurar GitHub Pages
