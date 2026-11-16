@@ -104,6 +104,8 @@ const GAME_ROWS = [
 ['Dead Cells',2018,'Ação,Indie','medium','hard','solo','roguelike,metroidvania,2d','🧬'],
 ['Enter the Gungeon',2016,'Ação,Indie','medium','hard','both','roguelike,2d,arcade','🔫'],
 ];
+// Acrescenta jogos sem reordenar os 101 registros antigos, preservando IDs locais.
+if(window.BX2Expansion && Array.isArray(window.BX2Expansion.rows)) GAME_ROWS.push(...window.BX2Expansion.rows);
 // Estimativas editoriais da HISTÓRIA PRINCIPAL, em horas. Não representam 100% nem DLC.
 // Valores arredondados com base em fontes comunitárias (HowLongToBeat, IsThereAnyDeal)
 // e guias de duração. null = sem campanha/objetivo final com tempo fixo.
@@ -215,7 +217,7 @@ const PALETTES = [ ['#3b171e','#bc303b'],['#171b3e','#6865bf'],['#1d3c40','#2c9e
 const games = GAME_ROWS.map((row,index)=>{
  const [title,year,genres,_oldDuration,difficulty,mode,tags,emoji] = row;
  const [start,end] = PALETTES[index%PALETTES.length];
- const mainHours = Object.prototype.hasOwnProperty.call(PLAYTIME_HOURS,title) ? PLAYTIME_HOURS[title] : null;
+ const mainHours = Object.prototype.hasOwnProperty.call(PLAYTIME_HOURS,title) ? PLAYTIME_HOURS[title] : (window.BX2Expansion && Object.prototype.hasOwnProperty.call(window.BX2Expansion.hours,title) ? window.BX2Expansion.hours[title] : null);
  const duration = mainHours == null ? 'open' : mainHours <= 12 ? 'short' : mainHours <= 35 ? 'medium' : 'long';
  return {id:'g'+index,title,year,genres:genres.split(','),duration,mainHours,difficulty,mode,tags:tags.split(','),emoji,start,end};
 });
@@ -347,14 +349,14 @@ const WIKIPEDIA_PAGES = Object.freeze({
 
 function coverURL(title){
   if(PS4_BOX_ART[title]) return PS4_BOX_ART[title];
-  const id=STEAM_APP_IDS[title];
+  const id=STEAM_APP_IDS[title] || (window.BX2Expansion && window.BX2Expansion.steam[title]);
   return id ? `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${id}/library_600x900.jpg` : null;
 }
 
 const wikiPromises = new Map();
 // Consulta pública e sem chave. Wikipedia exige origin=* para CORS no Action API.
 function wikipediaCoverURL(title) {
-  const page=WIKIPEDIA_PAGES[title];
+  const page=WIKIPEDIA_PAGES[title] || (window.BX2Expansion && window.BX2Expansion.wiki[title]);
   if(!page) return Promise.resolve(null);
   if(wikiPromises.has(title)) return wikiPromises.get(title);
   const params = new URLSearchParams({action:'query',prop:'pageimages',titles:page,pithumbsize:'650',piprop:'thumbnail',pilicense:'any',redirects:'1',format:'json',origin:'*'});
@@ -385,6 +387,7 @@ const escapeHTML = (s) => String(s).replace(/[&<>"']/g,(char)=>({'&':'&amp;','<'
 const allGenres = [...new Set(games.flatMap(g=>g.genres))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
 $('genreFilter').insertAdjacentHTML('beforeend',allGenres.map(g=>`<option value="${escapeHTML(g)}">${escapeHTML(g)}</option>`).join(''));
 $('heroCount').textContent=String(games.length);
+if($('newCount')) $('newCount').textContent=String(games.filter(g=>g.tags.includes('novidade')).length);
 let toastTimeout;
 function toast(message){const box=$('toast');box.textContent=message;box.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>box.classList.remove('show'),2400);}
 function saveLibrary(){try{localStorage.setItem(storageKey,JSON.stringify(library));}catch{toast('Seu navegador bloqueou o salvamento local.');}updateProfile();}
@@ -395,6 +398,7 @@ function baseFiltered(){let items=games.filter(g=>{
  if(state.view==='favorites'&&!library.favorites.includes(g.id))return false;
  if(state.view==='later'&&!library.later.includes(g.id))return false;
  if(state.view==='played'&&!library.played.includes(g.id))return false;
+ if(state.view==='new'&&!g.tags.includes('novidade'))return false;
  if(state.view==='quick'&&g.duration!=='short')return false;
  if(state.genre!=='all'&&!g.genres.includes(state.genre))return false;
  if(state.duration!=='all'&&g.duration!==state.duration)return false;
@@ -441,10 +445,10 @@ function hydrateCovers(scope=document){
  });
 }
 function cardHTML(g){const fav=library.favorites.includes(g.id),later=library.later.includes(g.id),played=library.played.includes(g.id);
-return `<article class="game-card"><div class="cover" style="--start:${g.start};--end:${g.end}">${coverImg(g)}<span class="cover-symbol" aria-hidden="true">${g.emoji}</span><span class="cover-top">PS4 · ${g.year}</span><button class="cover-heart ${fav?'selected':''}" data-action="favorites" data-id="${g.id}" aria-label="${fav?'Remover dos':'Adicionar aos'} favoritos" title="Favoritar">${fav?'♥':'♡'}</button><button class="game-title-button cover-title" style="position:relative;color:white;min-height:0;text-align:center" data-action="details" data-id="${g.id}">${escapeHTML(g.title)}</button></div><div class="game-content"><button class="game-title-button" data-action="details" data-id="${g.id}">${escapeHTML(g.title)}</button><div class="game-tags">${escapeHTML(g.genres.join(' · '))}</div><div class="game-footer"><span><b>◷</b> ${playtimeLabel(g)}</span><div class="mini-actions"><button class="${later?'active':''}" data-action="later" data-id="${g.id}" title="${later?'Remover de quero jogar':'Quero jogar'}" aria-label="Quero jogar ${escapeHTML(g.title)}">▤</button><button class="${played?'active':''}" data-action="played" data-id="${g.id}" title="${played?'Desmarcar zerado':'Marcar zerado'}" aria-label="Marcar ${escapeHTML(g.title)} como zerado">✓</button></div></div></div></article>`;}
+return `<article class="game-card"><div class="cover" style="--start:${g.start};--end:${g.end}">${coverImg(g)}<span class="cover-symbol" aria-hidden="true">${g.emoji}</span><span class="cover-top">PS4 · ${g.year}${g.tags.includes("novidade")?" · NOVO":""}</span><button class="cover-heart ${fav?'selected':''}" data-action="favorites" data-id="${g.id}" aria-label="${fav?'Remover dos':'Adicionar aos'} favoritos" title="Favoritar">${fav?'♥':'♡'}</button><button class="game-title-button cover-title" style="position:relative;color:white;min-height:0;text-align:center" data-action="details" data-id="${g.id}">${escapeHTML(g.title)}</button></div><div class="game-content"><button class="game-title-button" data-action="details" data-id="${g.id}">${escapeHTML(g.title)}</button><div class="game-tags">${escapeHTML(g.genres.join(' · '))}</div><div class="game-footer"><span><b>◷</b> ${playtimeLabel(g)}</span><div class="mini-actions"><button class="${later?'active':''}" data-action="later" data-id="${g.id}" title="${later?'Remover de quero jogar':'Quero jogar'}" aria-label="Quero jogar ${escapeHTML(g.title)}">▤</button><button class="${played?'active':''}" data-action="played" data-id="${g.id}" title="${played?'Desmarcar zerado':'Marcar zerado'}" aria-label="Marcar ${escapeHTML(g.title)} como zerado">✓</button></div></div></div></article>`;}
 function renderCatalog(){const filtered=baseFiltered();$('resultsCount').textContent=`${filtered.length} ${filtered.length===1?'jogo':'jogos'}`;const visible=filtered.slice(0,state.visible);$('gamesGrid').innerHTML=visible.length?visible.map(cardHTML).join(''):`<div class="empty-state"><strong>Sem jogos por aqui</strong><p>${['favorites','later','played'].includes(state.view)?'Marque jogos na biblioteca para vê-los aqui.':'Tente combinar outros filtros ou limpar a busca.'}</p></div>`;$('loadMore').hidden=filtered.length<=state.visible;hydrateCovers($('gamesGrid'));}
-function renderFeatured(){const picks=[games[0],games[24],games[50]];$('featuredGrid').innerHTML=picks.map((g,index)=>`<button type="button" class="featured-card" style="--start:${g.start};--end:${g.end}" data-action="details" data-id="${g.id}" data-emoji="${g.emoji}">${coverImg(g)}<span class="featured-badge">${['⚔ PARA OS CORAJOSOS','⚡ CAMPANHA CURTA','◇ MUNDO ABERTO'][index]}</span><h3>${escapeHTML(g.title)}</h3><small>${escapeHTML(g.genres.join(' · '))} · ${playtimeLabel(g)}</small></button>`).join('');hydrateCovers($('featuredGrid'));}
-const viewTitles={discover:['Descobrir','Catálogo PS4','Encontre o jogo certo para o seu momento.'],recommend:['Para você','Jogos para você','Sugestões baseadas em seus favoritos e histórico.'],quick:['Zerar rápido','Jogos para zerar rápido','Campanhas curtas para aproveitar sem enrolação.'],favorites:['Favoritos','Meus favoritos','Seus jogos preferidos em um só lugar.'],later:['Quero jogar','Quero jogar','Sua lista para a próxima jogatina.'],played:['Já zerei','Jogos zerados','Acompanhe suas conquistas pessoais.']};
+function renderFeatured(){const newPicks=games.filter(g=>g.tags.includes('novidade')).slice(0,2);const picks=[games[0],...(newPicks.length===2?newPicks:[games[24],games[50]])];$('featuredGrid').innerHTML=picks.map((g,index)=>`<button type="button" class="featured-card" style="--start:${g.start};--end:${g.end}" data-action="details" data-id="${g.id}" data-emoji="${g.emoji}">${coverImg(g)}<span class="featured-badge">${['⚔ PARA OS CORAJOSOS','✦ NOVO NO CATÁLOGO','◇ NOVO NO CATÁLOGO'][index]}</span><h3>${escapeHTML(g.title)}</h3><small>${escapeHTML(g.genres.join(' · '))} · ${playtimeLabel(g)}</small></button>`).join('');hydrateCovers($('featuredGrid'));}
+const viewTitles={discover:['Descobrir','Catálogo PS4','Encontre o jogo certo para o seu momento.'],recommend:['Para você','Jogos para você','Sugestões baseadas em seus favoritos e histórico.'],quick:['Zerar rápido','Jogos para zerar rápido','Campanhas curtas para aproveitar sem enrolação.'],new:['Novidades','Recém-adicionados ao BX-GAMES','Confira os novos títulos de PS4 no nosso catálogo.'],favorites:['Favoritos','Meus favoritos','Seus jogos preferidos em um só lugar.'],later:['Quero jogar','Quero jogar','Sua lista para a próxima jogatina.'],played:['Já zerei','Jogos zerados','Acompanhe suas conquistas pessoais.']};
 function setView(view){state.view=view;state.visible=16;document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===view));const [crumb,title,subtitle]=viewTitles[view];$('breadcrumb').textContent=crumb;$('catalogTitle').innerHTML=`${title} <span class="red-line">—</span>`;$('catalogCaption').textContent=subtitle;const featuredVisible=view==='discover';$('pickSection').hidden=!featuredVisible;$('featuredGrid').hidden=!featuredVisible;if(view==='recommend'){renderRecommendations('Quero recomendações de acordo com meus favoritos e jogos zerados',true);}renderCatalog();$('catalogAnchor').scrollIntoView({behavior:'smooth',block:'start'});}
 function clearFilters(){state.query='';state.genre='all';state.duration='all';state.difficulty='all';state.mode='all';state.tag='all';state.sort='featured';state.visible=16;$('search').value='';for(const id of ['genreFilter','durationFilter','difficultyFilter','modeFilter'])$(id).value='all';$('sort').value='featured';document.querySelectorAll('.chip').forEach(b=>b.classList.toggle('active',b.dataset.tag==='all'));renderCatalog();}
 function showDialog(id,refresh=false){const g=games.find(game=>game.id===id);if(!g)return;
