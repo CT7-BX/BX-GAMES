@@ -25,6 +25,7 @@ jobs:
           node-version: '24'
       - name: Validar JavaScript e regressões
         run: |
+          node --check catalog-v2_1.js
           node --check site.js
           node --check bx2-engine.js
           node --check bx2.js
