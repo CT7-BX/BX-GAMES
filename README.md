@@ -2,6 +2,17 @@
 
 Site independente de descoberta e recomendações de jogos para **PlayStation 4**, com identidade preto/vermelho, interface em português e navegação responsiva.
 
+## BX-GAMES 2.2 — sistema de avaliações (16/11/2026)
+
+- **Notas de 1 a 5 estrelas por jogo**: as avaliações existentes da versão 2.0 são mantidas sem migração destrutiva.
+- **Resenhas pessoais** de até 800 caracteres, com opção de indicar spoilers, editar e excluir.
+- **Painel Minhas avaliações**: total de jogos avaliados, média das **minhas** notas, quantidade de resenhas e distribuição de estrelas.
+- **Ranking pessoal** com ordenação por maiores/menores notas ou nome; filtro de resenhas escritas.
+- **Estrelas nos cards** e opção de ordenar o catálogo pelas próprias avaliações.
+- **Backup JSON** inclui agora as resenhas, além dos favoritos e notas.
+
+**Privacidade:** o GitHub Pages não possui banco de dados nem autenticação nesta fase. Notas e resenhas ficam exclusivamente no armazenamento do navegador (`bx-games-v2-profile-1` e `bx-games-v2-reviews-1`), sem sincronização entre dispositivos e sem média coletiva. Não há comentários públicos. Para uma comunidade real, o próximo passo é configurar backend, moderação e regras de privacidade. Limpar os dados do navegador pode apagar avaliações que não tenham backup exportado.
+
 ## BX-GAMES 2.1 — ampliação do catálogo (16/11/2026)
 
 - Adicionados **25 novos jogos compatíveis com PS4**, incluindo Hogwarts Legacy, Persona 3 Reload, Final Fantasy VII Remake, Sifu, Stray, Tunic, Sea of Stars, Dave the Diver, Chants of Sennaar e Assassin’s Creed Mirage.
@@ -63,6 +74,7 @@ Endereço público, após implantação bem-sucedida: https://ct7-bx.github.io/B
 - `catalog-v2_1.js` — expansão de 25 novos jogos sem alterar os IDs dos 101 anteriores.
 - `favicon.svg` e `manifest.webmanifest` — identidade visual.
 - `.github/workflows/pages.yml` — validações e publicação automática no GitHub Pages.
+- `bx-reviews-engine.js`, `bx-reviews.css` — notas, resenhas, painel e ranking privado.
 - `bx2-engine.js` — lógica testável do quiz, comparação e validação de perfil.
 - `bx2.js`, `bx2.css` — interface da etapa 1 da v2.0.
 - `tests/` — testes unitários e simulações de interação.
