@@ -1,0 +1,31 @@
+/* BX-GAMES 2.2: avaliações privadas e ranking pessoal */
+.bx-rating-panel{scroll-margin-top:22px;margin:18px 0 30px;border:1px solid #3d3037;border-radius:18px;background:linear-gradient(140deg,#1c181d,#111118);padding:22px}
+.bx-rating-header{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:17px}
+.bx-rating-header h2{font-family:var(--display);font-size:clamp(20px,2.5vw,27px);margin:5px 0}
+.bx-rating-header p{margin:5px 0;color:var(--muted);line-height:1.55}
+.bx-rating-private{font-weight:700;font-size:11px;border:1px solid #593d45;background:#2a1d23;padding:8px 11px;border-radius:999px;color:#ffd2d8;white-space:nowrap}
+.bx-rating-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:14px 0}
+.bx-rating-stat{background:#22212a;border:1px solid #373441;border-radius:12px;padding:15px;display:grid;gap:5px}
+.bx-rating-stat strong{font-size:24px;font-family:var(--display);line-height:1.15}
+.bx-rating-stat small{color:#afadbb}
+.bx-rating-filters{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0}
+.bx-rating-filters select{border:1px solid #57515d;border-radius:9px;padding:10px;background:#25242d;color:#eee}
+.bx-rating-filters label{display:flex;align-items:center;gap:7px;color:#d4d3dc}
+.bx-rating-entry{border:1px solid #393340;border-radius:11px;background:#22212b;padding:13px;display:grid;gap:9px}
+.bx-rating-entry-head{display:flex;align-items:center;gap:9px}
+.bx-rating-entry-head button{border:0;background:none;padding:0;color:#fff;font-weight:750;text-align:left;cursor:pointer}
+.bx-rating-entry-head button:hover{text-decoration:underline}
+.bx-rating-entry-head b{margin-left:auto;color:#ffcc70;white-space:nowrap}
+.bx-rating-entry p{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;color:#ddd9df;font-size:12px;line-height:1.65}
+.bx-rating-entry small,.bx-rating-empty{color:#b9b3bf;font-size:12px}
+.bx-rating-dist{display:flex;gap:8px;flex-wrap:wrap;margin:7px 0 17px}
+.bx-rating-dist span{background:#26222d;border:1px solid #443745;border-radius:8px;padding:7px 11px;color:#f3c87b;font-size:12px}
+.bx-review-edit{display:grid;gap:8px;margin-top:13px}
+.bx-review-edit textarea{min-height:96px;max-height:280px;width:100%;resize:vertical;border:1px solid #4d4957;border-radius:9px;background:#1d1d26;color:#f5f5f8;padding:12px;font:inherit}
+.bx-review-edit textarea:focus-visible{outline:2px solid #f04450;outline-offset:2px}
+.bx-review-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bx-review-actions button{border:1px solid #7d3440;border-radius:8px;background:#ae2638;color:#fff;padding:10px 13px;font-weight:700}
+.bx-review-actions button.bx-review-delete{background:#2e252d;border-color:#544651}
+.bx-review-actions label{display:flex;gap:5px;align-items:center;font-size:12px}
+.bx-review-edit .bx-review-footnote{font-size:11px;color:#aeaab6;margin:2px 0}
+@media(max-width:620px){.bx-rating-panel{padding:14px}.bx-rating-summary{gap:7px}.bx-rating-stat{padding:10px}.bx-rating-stat strong{font-size:18px}.bx-rating-header{flex-wrap:wrap}.bx-rating-filters select{width:100%}.bx-review-actions label{width:100%}}
