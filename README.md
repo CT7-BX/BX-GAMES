@@ -2,7 +2,15 @@
 
 Site independente de descoberta e recomendações de jogos para **PlayStation 4**, com identidade preto/vermelho, interface em português e navegação responsiva.
 
-## BX-GAMES 2.0 — Etapa 1 (novidades)
+## BX-GAMES 2.1 — ampliação do catálogo (16/11/2026)
+
+- Adicionados **25 novos jogos compatíveis com PS4**, incluindo Hogwarts Legacy, Persona 3 Reload, Final Fantasy VII Remake, Sifu, Stray, Tunic, Sea of Stars, Dave the Diver, Chants of Sennaar e Assassin’s Creed Mirage.
+- O catálogo passou de **101 para 126 jogos**, com uma nova área **Novidades** no menu e destaque dos novos títulos na página inicial.
+- Todas as novas entradas têm duração individual estimada para a **campanha principal**, categorias e gênero; as capas são buscadas em fornecedores externos da Steam/Wikipédia. Algumas artes podem não coincidir com a capa física de PS4.
+- Os IDs dos 101 jogos antigos permanecem inalterados para preservar favoritos e dados pessoais salvos no navegador.
+- Compatibilidade PS4 confirmada por amostragem em páginas oficiais: [Persona 3 Reload](https://www.playstation.com/pt-br/games/persona-3-reload/), [Hogwarts Legacy](https://www.playstation.com/pt-br/games/hogwarts-legacy/), [Sea of Stars](https://www.playstation.com/pt-br/games/sea-of-stars/), [Tunic](https://www.playstation.com/pt-br/games/tunic/) e [Dave the Diver](https://www.playstation.com/pt-br/games/dave-the-diver/).
+
+## BX-GAMES 2.0 — Etapa 1 (funcionalidades preservadas)
 
 - **Quiz personalizado:** recomenda jogos cruzando gênero, duração, dificuldade, modo e histórico de zerados.
 - **Comparador:** dois jogos lado a lado (campanha, ano, gênero, dificuldade e modo).
@@ -15,18 +23,18 @@ As avaliações são **privadas**, não há comentários públicos nem catálogo
 
 ## Recursos preservados da versão 1.2
 
-- Catálogo inicial de **101 jogos de PS4**, com pesquisa, filtros e ordenação.
+- Catálogo atual de **126 jogos de PS4**, com pesquisa, filtros e ordenação.
 - Capas reais via fontes públicas de terceiros, com imagem alternativa caso não carreguem.
 - Recomendações por preferências, palavras-chave e favoritos, processadas localmente (não é IA generativa).
 - Biblioteca de favoritos, “quero jogar” e “já zerei” guardada no navegador via localStorage.
 - Jogo surpresa e detalhes dos títulos.
-- **Duração individual dos 101 jogos**: exibe `≈ Nh` em cada card (ou **Duração livre** quando não existe um fim com tempo definido).
+- **Duração individual dos 126 jogos**: exibe `≈ Nh` em cada card (ou **Duração livre** quando não existe um fim com tempo definido).
 - Filtros de até 12h, 13–35h, mais de 35h e duração livre, além da ordenação **Campanhas mais curtas/longas**.
 
 ## Durações — metodologia e limites
 
 - As horas mostradas representam **estimativas médias arredondadas para a campanha principal**, não o tempo para fazer 100% nem para concluir DLC. É uma curadoria editorial, não uma importação automática ou reprodução exata da base de dados de terceiros.
-- O catálogo tem **101 jogos** e **97 estimativas numéricas**; **Minecraft, Stardew Valley, F1 24 e DiRT Rally 2.0** estão identificados como `Duração livre` porque não possuem uma campanha com duração fixa aplicável ao uso geral. Jogos abertos com objetivo principal, como Gran Turismo 7 (livros do Café) e No Man's Sky (trama central), mostram a duração desse objetivo — o restante pode durar indefinidamente.
+- O catálogo tem **126 jogos** e **122 estimativas numéricas**; **Minecraft, Stardew Valley, F1 24 e DiRT Rally 2.0** estão identificados como `Duração livre` porque não possuem uma campanha com duração fixa aplicável ao uso geral. Jogos abertos com objetivo principal, como Gran Turismo 7 (livros do Café) e No Man's Sky (trama central), mostram a duração desse objetivo — o restante pode durar indefinidamente.
 - Compilações, roguelikes, dificuldades diferentes e remasterizações podem variar bastante conforme a edição e o objetivo escolhido. Os valores podem mudar quando novas estatísticas forem publicadas.
 
 **Referências consultadas para calibrar as estimativas:**
@@ -51,7 +59,8 @@ Endereço público, após implantação bem-sucedida: https://ct7-bx.github.io/B
 
 - `index.html` — interface do site.
 - `styles.css` — tema preto/vermelho e estilos responsivos.
-- `site.js` — catálogo, capas e recomendações (bundle).
+- `site.js` — catálogo principal, capas e recomendações (bundle).
+- `catalog-v2_1.js` — expansão de 25 novos jogos sem alterar os IDs dos 101 anteriores.
 - `favicon.svg` e `manifest.webmanifest` — identidade visual.
 - `.github/workflows/pages.yml` — validações e publicação automática no GitHub Pages.
 - `bx2-engine.js` — lógica testável do quiz, comparação e validação de perfil.
