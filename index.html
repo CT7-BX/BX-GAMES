@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0a0a0d"><meta name="description" content="BX-GAMES: 126 jogos de PS4, novidades, recomendações, filtros, biblioteca pessoal e comparador.">
-  <title>BX-GAMES — Descubra seu próximo jogo</title><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./bx2.css?v=2.0a">
+  <title>BX-GAMES — Descubra seu próximo jogo</title><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./bx2.css?v=2.0a"><link rel="stylesheet" href="./bx-reviews.css?v=2.2">
 </head>
 <body>
 <div class="shell">
@@ -11,8 +11,8 @@
  <a href="#inicio" class="brand" aria-label="BX-GAMES início"><span class="brand-mark">BX<span>✦</span></span><span class="brand-text">BX<span>-</span>GAMES<small>PLAYSTATION DISCOVERY</small></span></a>
  <div class="side-section"><span class="side-caption">DESCUBRA</span><button class="nav-btn active" data-view="discover"><span>◈</span> Explorar jogos</button><button class="nav-btn" data-view="recommend"><span>✧</span> Para você</button><button class="nav-btn" data-view="quick"><span>⚡</span> Zerar rápido</button><button class="nav-btn" data-view="new"><span>✦</span> Novidades <b id="newCount">25</b></button></div>
  <div class="side-section"><span class="side-caption">MINHA ÁREA</span><button class="nav-btn" data-view="favorites"><span>♡</span> Favoritos <b id="favoritesCount">0</b></button><button class="nav-btn" data-view="later"><span>▤</span> Quero jogar <b id="laterCount">0</b></button><button class="nav-btn" data-view="played"><span>✓</span> Já zerei <b id="playedCount">0</b></button></div>
- <div class="side-section"><span class="side-caption">FERRAMENTAS 2.0</span><button class="bx2-sidebar-link" data-bx2-jump="Quiz">✧ Quiz de jogos</button><button class="bx2-sidebar-link" data-bx2-jump="Compare">⚖ Comparador</button><button class="bx2-sidebar-link" data-bx2-jump="Library">▤ Minha biblioteca 2.0</button></div>
- <div class="sidebar-bottom"><span class="status-dot"></span><div><strong>BX-GAMES <span class="tiny-version">v2.1 · catálogo</span></strong><small>Seu próximo jogo começa aqui.</small></div></div>
+ <div class="side-section"><span class="side-caption">FERRAMENTAS 2.0</span><button class="bx2-sidebar-link" data-bx2-jump="Quiz">✧ Quiz de jogos</button><button class="bx2-sidebar-link" data-bx2-jump="Compare">⚖ Comparador</button><button class="bx2-sidebar-link" data-bx2-jump="Library">▤ Minha biblioteca 2.0</button><button class="bx2-sidebar-link" data-bx2-jump="Ratings">★ Avaliações</button></div>
+ <div class="sidebar-bottom"><span class="status-dot"></span><div><strong>BX-GAMES <span class="tiny-version">v2.2 · avaliações</span></strong><small>Seu próximo jogo começa aqui.</small></div></div>
 </aside>
 <main class="main" id="inicio">
  <header class="topbar"><div class="breadcrumbs">BX-GAMES <span>/</span> <strong id="breadcrumb">Descobrir</strong></div><div class="top-controls"><span class="platform-pill">◉ PS4</span><button class="icon-button" id="surpriseTop" type="button" title="Jogo surpresa" aria-label="Sortear jogo">⚄</button></div></header>
@@ -53,7 +53,25 @@
  </div>
 </section>
 
- <section class="section-row catalog-heading" id="catalogAnchor"><div><span class="kicker">EXPLORE SEM LIMITES</span><h2 id="catalogTitle">Catálogo PS4 <span class="red-line">—</span></h2><p id="catalogCaption" class="section-note">Encontre o jogo certo para o seu momento.</p></div><button id="resetFilters" class="reset-link">↻ Limpar filtros</button></section>
+ <section class="bx-rating-panel" id="bx2Ratings" aria-labelledby="bxRatingsTitle">
+ <div class="bx-rating-header">
+  <div><span class="kicker">SISTEMA DE AVALIAÇÕES</span><h2 id="bxRatingsTitle">Minhas avaliações ★</h2><p>Dê de 1 a 5 estrelas, escreva resenhas e organize seu ranking pessoal. Abra os detalhes de um jogo para avaliar.</p></div>
+  <span class="bx-rating-private">🔒 Só neste navegador</span>
+ </div>
+ <div class="bx-rating-summary">
+  <div class="bx-rating-stat"><strong id="bx2RatingsCount">0</strong><small>Jogos avaliados</small></div>
+  <div class="bx-rating-stat"><strong id="bx2RatingsAverage">—</strong><small>Média das minhas notas</small></div>
+  <div class="bx-rating-stat"><strong id="bx2ReviewsCount">0</strong><small>Resenhas escritas</small></div>
+ </div>
+ <div class="bx-rating-dist" id="bx2RatingDistribution" aria-label="Quantidade de avaliações por estrela"></div>
+ <div class="bx-rating-filters">
+  <label>Ordenar <select id="bx2RatingOrder" aria-label="Ordenar minhas avaliações"><option value="high">Maiores notas primeiro</option><option value="low">Menores notas primeiro</option><option value="az">Nome A–Z</option></select></label>
+  <label><input type="checkbox" id="bx2OnlyWithReview"> Somente jogos com resenha</label>
+ </div>
+ <div class="bx2-result-list" id="bx2RatingsList" aria-live="polite"><p class="bx-rating-empty">Suas avaliações aparecerão aqui.</p></div>
+ <p class="bx2-muted">Essas notas não são médias da comunidade. Dados salvos localmente e incluídos no backup JSON da biblioteca.</p>
+</section>
+<section class="section-row catalog-heading" id="catalogAnchor"><div><span class="kicker">EXPLORE SEM LIMITES</span><h2 id="catalogTitle">Catálogo PS4 <span class="red-line">—</span></h2><p id="catalogCaption" class="section-note">Encontre o jogo certo para o seu momento.</p></div><button id="resetFilters" class="reset-link">↻ Limpar filtros</button></section>
  <div class="filter-panel"><div class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" placeholder="Buscar jogo, gênero ou característica..." aria-label="Buscar jogos" type="search" autocomplete="off"></div><div class="filters"><label>Gênero<select id="genreFilter"><option value="all">Todos os gêneros</option></select></label><label>Duração<select id="durationFilter"><option value="all">Qualquer duração</option><option value="short">Até ~12h</option><option value="medium">~12–35h</option><option value="long">Mais de 35h</option><option value="open">Duração livre</option></select></label><label>Dificuldade<select id="difficultyFilter"><option value="all">Qualquer nível</option><option value="easy">Acessível</option><option value="medium">Moderada</option><option value="hard">Desafiadora</option></select></label><label>Modo<select id="modeFilter"><option value="all">Todos os modos</option><option value="solo">Um jogador</option><option value="multi">Com multiplayer</option><option value="coop">Cooperativo</option></select></label></div><div class="filter-bottom"><div class="chips" id="chips"><button class="chip active" data-tag="all">Todos</button><button class="chip" data-tag="soulslike">⚔ Soulslike</button><button class="chip" data-tag="mundo-aberto">◈ Mundo aberto</button><button class="chip" data-tag="historia">◇ Boa história</button><button class="chip" data-tag="curto">⚡ Curtos</button><button class="chip" data-tag="cooperativo">♧ Coop</button><button class="chip" data-tag="relaxante">☁ Relaxantes</button></div><div class="sort-wrap"><span id="resultsCount">0 jogos</span><label class="sr-only" for="sort">Ordenar jogos</label><select id="sort"><option value="featured">Em destaque</option><option value="az">Nome A–Z</option><option value="new">Mais recentes</option><option value="old">Mais antigos</option><option value="shortest">Campanhas mais curtas</option><option value="longest">Campanhas mais longas</option></select></div></div></div>
  <div class="games-grid" id="gamesGrid" aria-live="polite"></div><div class="load-more-wrap"><button class="load-more" id="loadMore">Mostrar mais jogos ↓</button></div>
  <footer><span>BX<span class="footer-red">-</span>GAMES © 2026 · Projeto independente, não afiliado à Sony.</span><span>Horas aproximadas da história principal · Biblioteca salva neste dispositivo.</span><a href="https://rawg.io/apidocs" target="_blank" rel="noopener noreferrer">Conheça a RAWG ↗</a></footer>
@@ -65,5 +83,6 @@
 <script defer src="./catalog-v2_1.js?v=2.1"></script>
 <script defer src="./site.js?v=2.1"></script>
 <script defer src="./bx2-engine.js?v=2.0a"></script>
-<script defer src="./bx2.js?v=2.0a"></script>
+<script defer src="./bx-reviews-engine.js?v=2.2"></script>
+<script defer src="./bx2.js?v=2.2"></script>
 </body></html>
