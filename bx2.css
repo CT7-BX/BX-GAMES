@@ -1,0 +1,52 @@
+/* BX-GAMES 2.0 / Etapa 1 — estilos isolados */
+.bx2-sidebar-link{display:block;width:100%;margin:3px 0;padding:11px 13px;border:1px solid transparent;border-radius:10px;background:transparent;color:#c9c9d0;text-align:left;font-weight:650}
+.bx2-sidebar-link:hover,.bx2-sidebar-link:focus-visible{border-color:#513039;color:#fff;background:#22151c}
+.bx2-tools{scroll-margin-top:24px;margin:26px 0 36px;padding:24px;border:1px solid #33303a;border-radius:20px;background:linear-gradient(125deg,#1b151a,#0e1016 70%);box-shadow:0 14px 40px #0003}
+.bx2-titlebar{display:flex;align-items:start;gap:18px;justify-content:space-between;margin-bottom:20px}
+.bx2-titlebar h2{font-family:var(--display);font-size:clamp(21px,2.5vw,30px);margin:5px 0 6px;line-height:1.2}
+.bx2-titlebar p{color:var(--muted);margin:0;line-height:1.6}
+.bx2-step{display:inline-block;padding:8px 11px;border-radius:999px;background:#361c23;border:1px solid #75313d;color:#ffb6be;white-space:nowrap;font-size:12px;font-weight:750}
+.bx2-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.bx2-card{scroll-margin-top:25px;min-width:0;padding:19px;border:1px solid #333039;background:#15151d;border-radius:16px}
+.bx2-card h3{font-size:18px;line-height:1.25;margin:0 0 9px;font-family:var(--display)}
+.bx2-muted{font-size:12px;color:#a9a9b5;line-height:1.55;margin:8px 0 12px}
+.bx2-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0}
+.bx2-fields label{display:grid;gap:6px;font-size:12px;color:#acacb8;font-weight:650}
+.bx2-fields select,.bx2-compare-selects select{color:#f3f3f6;background:#24242e;border:1px solid #43434f;border-radius:9px;padding:11px 9px;min-width:0;width:100%;outline-offset:2px}
+.bx2-action{padding:11px 15px;border:1px solid #f04450;border-radius:10px;color:#fff;background:#b92339;font-weight:750}
+.bx2-action:hover{background:#e23b4d}
+.bx2-result-list{display:grid;gap:8px;margin-top:12px}
+.bx2-result{border:1px solid #30303d;border-radius:11px;background:#20202a;color:#fff;padding:10px;text-align:left;display:flex;align-items:center;gap:12px;width:100%;min-width:0}
+.bx2-result:hover{border-color:#e04a59;background:#2c222a}
+.bx2-result>span:nth-child(2){display:grid;gap:4px;min-width:0;flex:1}
+.bx2-result strong{font-size:13px}
+.bx2-result small{color:#b9b9c6;font-size:11px}
+.bx2-number{border-radius:8px;background:#392026;color:#ff8f9a;font-weight:800;padding:8px;min-width:34px;text-align:center}
+.bx2-compare-selects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.bx2-compare-selects label{display:grid;gap:5px;color:#aaaab7;font-size:12px}
+.bx2-table{table-layout:fixed;width:100%;border-collapse:collapse;font-size:12px;line-height:1.5;margin:10px 0 5px}
+.bx2-table th,.bx2-table td{padding:9px 7px;text-align:left;vertical-align:top;border-bottom:1px solid #30303b;overflow-wrap:anywhere}
+.bx2-table th{color:#c8c8d2;font-weight:700}
+.bx2-table thead th{color:#fff;background:#25232b}
+.bx2-table th:first-child{width:24%}
+.bx2-personal{grid-column:1/-1}
+.bx2-personal-head{display:flex;gap:15px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.bx2-personal-head .bx2-action{border-color:#55515b;background:#24232e}
+.bx2-detail-plus{margin-top:17px;padding:17px 0 2px;border-top:1px solid #42414b}
+.bx2-detail-plus h3{margin:0 0 12px;font-size:17px}
+.bx2-detail-times{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.bx2-detail-times>div{padding:11px;background:#25232c;border:1px solid #35343f;border-radius:9px;display:grid;gap:8px}
+.bx2-detail-times small{font-size:11px;color:#b5b4c0}
+.bx2-detail-times strong{font-size:13px;line-height:1.25}
+.bx2-detail-links{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 20px}
+.bx2-detail-links a,.bx2-detail-links button,.bx2-status-actions button{border:1px solid #55424a;border-radius:9px;color:#f5dce0;background:#291e24;padding:9px 11px;font-size:12px;font-weight:700}
+.bx2-detail-links a:hover,.bx2-detail-links button:hover,.bx2-status-actions button:hover{border-color:#e04a59}
+.bx2-detail-personal{display:grid;gap:12px}
+.bx2-detail-personal>span{font-weight:700;color:#e2e2e9}
+.bx2-status-actions{display:flex;flex-wrap:wrap;gap:7px}
+.bx2-status-actions button.is-selected{background:#bf2d40;color:#fff;border-color:#e04a59}
+.bx2-rating{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.bx2-rating button{border:0;border-radius:7px;background:transparent;color:#ffbe69;padding:4px 6px;font-size:25px;line-height:1.3}
+.bx2-rating .bx2-rating-clear{font-size:12px;color:#c4c4cc;border:1px solid #444450;padding:8px;background:#292832;margin-left:5px}
+@media(max-width:1020px){.bx2-grid{grid-template-columns:1fr}.bx2-personal{grid-column:auto}}
+@media(max-width:620px){.bx2-tools{padding:14px;margin:18px 0}.bx2-card{padding:14px}.bx2-titlebar{display:block}.bx2-step{margin-top:12px}.bx2-detail-times{grid-template-columns:1fr}.bx2-compare-selects{grid-template-columns:1fr}.bx2-table{font-size:11px}}
